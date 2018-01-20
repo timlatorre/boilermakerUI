@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import { requestDownload } from '../store/download'
 
 /**
  * COMPONENT
@@ -12,11 +13,15 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
+  const appFiles = {"test": "path/like/this"}
 
   return (
     <div>
-      <h1>BOILERMAKER</h1>
       <nav>
+        <span>boilermakerPRO</span>
+        <button onClick={() => requestDownload(appFiles)}>Download Boilerplate</button>
+      </nav>
+      <div>
         {
           isLoggedIn
             ? <div>
@@ -30,7 +35,7 @@ const Main = (props) => {
               <Link to="/signup">Sign Up</Link>
             </div>
         }
-      </nav>
+      </div>
       <hr />
       {children}
     </div>
